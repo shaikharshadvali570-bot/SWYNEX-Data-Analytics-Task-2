@@ -1,0 +1,939 @@
+{
+  "overview": {
+    "rows": 7786,
+    "columns": 14,
+    "cells": 109004,
+    "memory_mb": 4.44,
+    "missing_cells": 10,
+    "missing_cells_pct": 9.17397526696268e-05,
+    "duplicate_rows": 0,
+    "derived_columns": [
+      "year_added",
+      "month_added",
+      "month_name_added",
+      "weekday_added",
+      "release_decade",
+      "years_to_netflix",
+      "primary_country",
+      "genre_count",
+      "cast_size"
+    ],
+    "categorical_unique": {
+      "type": 2,
+      "rating": 15,
+      "country": 679,
+      "listed_in": 492,
+      "duration_unit": 2,
+      "primary_country": 82
+    },
+    "dtypes": [
+      {
+        "column": "show_id",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 7786,
+        "role": "identifier"
+      },
+      {
+        "column": "type",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 2,
+        "role": "categorical"
+      },
+      {
+        "column": "title",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 7786,
+        "role": "identifier"
+      },
+      {
+        "column": "director",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 4050,
+        "role": "multi-value text"
+      },
+      {
+        "column": "cast",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 6832,
+        "role": "multi-value text"
+      },
+      {
+        "column": "country",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 679,
+        "role": "multi-value text"
+      },
+      {
+        "column": "date_added",
+        "dtype": "datetime64[us]",
+        "non_null": 7776,
+        "missing": 10,
+        "unique": 1512,
+        "role": "datetime"
+      },
+      {
+        "column": "release_year",
+        "dtype": "int64",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 73,
+        "role": "numeric"
+      },
+      {
+        "column": "rating",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 15,
+        "role": "categorical"
+      },
+      {
+        "column": "duration_value",
+        "dtype": "int64",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 206,
+        "role": "numeric"
+      },
+      {
+        "column": "duration_unit",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 2,
+        "role": "categorical"
+      },
+      {
+        "column": "listed_in",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 492,
+        "role": "multi-value text"
+      },
+      {
+        "column": "description",
+        "dtype": "str",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 7769,
+        "role": "free text"
+      },
+      {
+        "column": "added_before_release",
+        "dtype": "bool",
+        "non_null": 7786,
+        "missing": 0,
+        "unique": 2,
+        "role": "boolean"
+      }
+    ],
+    "unique_type": 2,
+    "top_type": {
+      "value": "Movie",
+      "count": 5376
+    },
+    "unique_rating": 15,
+    "top_rating": {
+      "value": "TV-MA",
+      "count": 2862
+    },
+    "unique_country": 679,
+    "top_country": {
+      "value": "United States",
+      "count": 2556
+    },
+    "unique_listed_in": 492,
+    "top_listed_in": {
+      "value": "Documentaries",
+      "count": 334
+    },
+    "unique_duration_unit": 2,
+    "top_duration_unit": {
+      "value": "Minutes",
+      "count": 5376
+    }
+  },
+  "quality": {
+    "checks": [
+      {
+        "check": "show_id is unique",
+        "result": "PASS",
+        "detail": "7,786 unique ids"
+      },
+      {
+        "check": "no duplicate records",
+        "result": "PASS",
+        "detail": "0 duplicate rows"
+      },
+      {
+        "check": "type only Movie / TV Show",
+        "result": "PASS",
+        "detail": "Movie (5,376), TV Show (2,410)"
+      },
+      {
+        "check": "duration_unit matches type",
+        "result": "PASS",
+        "detail": "movies in Minutes, TV shows in Seasons"
+      },
+      {
+        "check": "duration_value is positive",
+        "result": "PASS",
+        "detail": "min 1, max 312"
+      },
+      {
+        "check": "release_year within 1900-2021",
+        "result": "PASS",
+        "detail": "1925-2021"
+      },
+      {
+        "check": "date_added not in the future",
+        "result": "PASS",
+        "detail": "latest 2021-01-16"
+      },
+      {
+        "check": "missing values limited to date_added",
+        "result": "PASS",
+        "detail": "date_added: 10 (0.13%)"
+      },
+      {
+        "check": "no invisible zero-width space (U+200B) in short text",
+        "result": "REVIEW",
+        "detail": "6 cells: title 5, cast 1"
+      }
+    ],
+    "missing": {
+      "date_added": 10
+    },
+    "placeholders": {
+      "director": 2389,
+      "cast": 718,
+      "country": 507,
+      "rating": 7
+    },
+    "zwsp_cells": 6,
+    "zwsp_hits": {
+      "title": 5,
+      "cast": 1
+    }
+  },
+  "descriptive": {
+    "numeric": {
+      "release_year": {
+        "count": 7786.0,
+        "mean": 2013.932571281788,
+        "median": 2017.0,
+        "mode": 2018.0,
+        "std": 8.757957020072576,
+        "variance": 76.7018111654385,
+        "min": 1925.0,
+        "q1": 2013.0,
+        "q3": 2018.0,
+        "max": 2021.0,
+        "range": 96.0,
+        "iqr": 5.0,
+        "p10": 2006.0,
+        "p90": 2020.0,
+        "skewness": -3.618930769677515,
+        "outliers_iqr": 745.0,
+        "lower_fence": 2005.5,
+        "upper_fence": 2025.5
+      },
+      "duration_value": {
+        "count": 7786.0,
+        "mean": 69.11803236578474,
+        "median": 88.0,
+        "mode": 1.0,
+        "std": 50.95230120268541,
+        "variance": 2596.136997849177,
+        "min": 1.0,
+        "q1": 2.0,
+        "q3": 106.0,
+        "max": 312.0,
+        "range": 311.0,
+        "iqr": 104.0,
+        "p10": 1.0,
+        "p90": 126.0,
+        "skewness": -0.16426445768948011,
+        "outliers_iqr": 1.0,
+        "lower_fence": -154.0,
+        "upper_fence": 262.0
+      }
+    },
+    "duration_by_unit": {
+      "Minutes": {
+        "count": 5376,
+        "mean": 99.31,
+        "median": 98.0,
+        "mode": 90.0,
+        "std": 28.53,
+        "min": 3,
+        "q1": 86.0,
+        "q3": 114.0,
+        "max": 312,
+        "iqr": 28.0,
+        "skewness": 0.191
+      },
+      "Seasons": {
+        "count": 2410,
+        "mean": 1.78,
+        "median": 1.0,
+        "mode": 1.0,
+        "std": 1.6,
+        "min": 1,
+        "q1": 1.0,
+        "q3": 2.0,
+        "max": 16,
+        "iqr": 1.0,
+        "skewness": 3.368
+      }
+    },
+    "categorical": {
+      "type": {
+        "unique": 2,
+        "top_category": "Movie",
+        "top_count": 5376,
+        "top_share": 0.6904700744926792,
+        "lowest_category": "TV Show",
+        "lowest_count": 2410
+      },
+      "rating": {
+        "unique": 15,
+        "top_category": "TV-MA",
+        "top_count": 2862,
+        "top_share": 0.36758284099666066,
+        "lowest_category": "NC-17",
+        "lowest_count": 3
+      },
+      "country": {
+        "unique": 679,
+        "top_category": "United States",
+        "top_count": 2556,
+        "top_share": 0.32828153095299256,
+        "lowest_category": "Sweden, Czech Republic, United Kingdom, Denmark, Netherlands",
+        "lowest_count": 1
+      },
+      "listed_in": {
+        "unique": 492,
+        "top_category": "Documentaries",
+        "top_count": 334,
+        "top_share": 0.042897508348317494,
+        "lowest_category": "International TV Shows, Spanish-Language TV Shows, Stand-Up Comedy & Talk Shows",
+        "lowest_count": 1
+      },
+      "duration_unit": {
+        "unique": 2,
+        "top_category": "Minutes",
+        "top_count": 5376,
+        "top_share": 0.6904700744926792,
+        "lowest_category": "Seasons",
+        "lowest_count": 2410
+      }
+    }
+  },
+  "univariate_a": {
+    "movie_runtime": {
+      "mean": 99.31,
+      "median": 98.0,
+      "std": 28.53,
+      "skew": 0.191,
+      "q1": 86.0,
+      "q3": 114.0,
+      "max": 312,
+      "min": 3,
+      "outliers": 337,
+      "short_titles": 420,
+      "short_share": 0.078125
+    },
+    "tv_seasons": {
+      "mean": 1.78,
+      "median": 1.0,
+      "std": 1.6,
+      "skew": 3.368,
+      "max": 16,
+      "single_season": 1608,
+      "single_season_share": 0.6672199170124481,
+      "outliers": 236
+    }
+  },
+  "univariate_b": {
+    "release_year": {
+      "min": 1925,
+      "max": 2021,
+      "mean": 2013.93,
+      "median": 2017.0,
+      "skew": -3.619,
+      "recent_share": 0.70010274852299
+    },
+    "rating": {
+      "top": "TV-MA",
+      "top_count": 2862,
+      "top_share": 0.36758284099666066,
+      "top3_share": 0.7191112252761367,
+      "mature_share": 0.7010017980991523,
+      "family_share": 0.1331877729257642,
+      "least": "NC-17",
+      "least_count": 3,
+      "not_specified": 7
+    },
+    "type": {
+      "movie_count": 5376,
+      "tv_count": 2410,
+      "movie_share": 0.6904700744926792,
+      "ratio": 2.2307053941908714
+    }
+  },
+  "bivariate": {
+    "runtime_vs_year": {
+      "pearson_r": -0.2049,
+      "mean_min": 89.52,
+      "mean_max": 142.36,
+      "spread_minutes": 52.84,
+      "decades_compared": 7
+    },
+    "rating_by_type": {
+      "movie_top_rating": "TV-MA",
+      "movie_top_share": 34.3,
+      "tv_top_rating": "TV-MA",
+      "tv_top_share": 42.24
+    }
+  },
+  "trend": {
+    "trend": {
+      "first_date": "2008-01-01",
+      "last_date": "2021-01-16",
+      "years_covered": 14,
+      "peak_year": 2019,
+      "peak_year_additions": 2152,
+      "first_year": 2008,
+      "first_year_additions": 2,
+      "growth_multiple": 1076.0,
+      "y2019": 2152,
+      "y2020": 2009,
+      "peak_decline_pct": -6.6,
+      "busiest_month": "December",
+      "busiest_month_count": 833,
+      "friday_count": 2286,
+      "friday_share": 0.29398148148148145,
+      "median_gap": 1.0,
+      "mean_gap": 4.56,
+      "share_within_1yr": 0.5558127572016461,
+      "daily_mean": 5.14,
+      "max_day": "2020-01-01",
+      "max_day_count": 119,
+      "top_days": [
+        [
+          "2020-01-01",
+          119
+        ],
+        [
+          "2019-11-01",
+          96
+        ],
+        [
+          "2018-03-01",
+          76
+        ],
+        [
+          "2019-12-31",
+          76
+        ],
+        [
+          "2018-10-01",
+          72
+        ]
+      ],
+      "yearly": {
+        "2008": 2,
+        "2009": 2,
+        "2010": 1,
+        "2011": 13,
+        "2012": 3,
+        "2013": 11,
+        "2014": 25,
+        "2015": 88,
+        "2016": 443,
+        "2017": 1225,
+        "2018": 1685,
+        "2019": 2152,
+        "2020": 2009,
+        "2021": 117
+      }
+    }
+  },
+  "correlation": {
+    "movie_matrix": {
+      "release_year": {
+        "release_year": 1.0,
+        "duration_value": -0.2049,
+        "genre_count": -0.1104,
+        "cast_size": -0.1356,
+        "years_to_netflix": -0.9899
+      },
+      "duration_value": {
+        "release_year": -0.2049,
+        "duration_value": 1.0,
+        "genre_count": 0.4373,
+        "cast_size": 0.3416,
+        "years_to_netflix": 0.2227
+      },
+      "genre_count": {
+        "release_year": -0.1104,
+        "duration_value": 0.4373,
+        "genre_count": 1.0,
+        "cast_size": 0.2628,
+        "years_to_netflix": 0.1239
+      },
+      "cast_size": {
+        "release_year": -0.1356,
+        "duration_value": 0.3416,
+        "genre_count": 0.2628,
+        "cast_size": 1.0,
+        "years_to_netflix": 0.1591
+      },
+      "years_to_netflix": {
+        "release_year": -0.9899,
+        "duration_value": 0.2227,
+        "genre_count": 0.1239,
+        "cast_size": 0.1591,
+        "years_to_netflix": 1.0
+      }
+    },
+    "strong_pairs": 1,
+    "moderate_pairs": 2,
+    "weak_pairs": 7,
+    "top_pairs": [
+      {
+        "variable_1": "release_year",
+        "variable_2": "years_to_netflix",
+        "r": -0.9899
+      },
+      {
+        "variable_1": "duration_value",
+        "variable_2": "genre_count",
+        "r": 0.4373
+      },
+      {
+        "variable_1": "cast_size",
+        "variable_2": "duration_value",
+        "r": 0.3416
+      },
+      {
+        "variable_1": "genre_count",
+        "variable_2": "cast_size",
+        "r": 0.2628
+      },
+      {
+        "variable_1": "years_to_netflix",
+        "variable_2": "duration_value",
+        "r": 0.2227
+      }
+    ],
+    "age_vs_release_r": -0.9874,
+    "runtime_vs_year_r": -0.2049
+  },
+  "outliers": {
+    "movie_runtime": {
+      "fence": [
+        44.0,
+        156.0
+      ],
+      "count": 337,
+      "share": 0.043282815309529925,
+      "examples": [
+        {
+          "title": "Black Mirror: Bandersnatch",
+          "release_year": 2018,
+          "duration_value": 312
+        },
+        {
+          "title": "The School of Mischief",
+          "release_year": 1973,
+          "duration_value": 253
+        },
+        {
+          "title": "No Longer kids",
+          "release_year": 1979,
+          "duration_value": 237
+        }
+      ],
+      "shortest": [
+        {
+          "title": "Silent",
+          "duration_value": 3
+        },
+        {
+          "title": "Sol Levante",
+          "duration_value": 5
+        },
+        {
+          "title": "Cops and Robbers",
+          "duration_value": 8
+        }
+      ],
+      "short_count": 420
+    },
+    "tv_seasons": {
+      "fence": [
+        -0.5,
+        3.5
+      ],
+      "count": 236,
+      "share": 0.030310814282044695,
+      "examples": [
+        {
+          "title": "Grey's Anatomy",
+          "release_year": 2019,
+          "duration_value": 16
+        },
+        {
+          "title": "NCIS",
+          "release_year": 2017,
+          "duration_value": 15
+        },
+        {
+          "title": "Supernatural",
+          "release_year": 2019,
+          "duration_value": 15
+        }
+      ]
+    },
+    "release_year": {
+      "fence": [
+        2005.5,
+        2025.5
+      ],
+      "count": 745,
+      "share": 0.09568456203442076,
+      "oldest": [
+        {
+          "title": "Pioneers: First Women Filmmakers*",
+          "release_year": 1925
+        },
+        {
+          "title": "Prelude to War",
+          "release_year": 1942
+        },
+        {
+          "title": "The Battle of Midway",
+          "release_year": 1942
+        }
+      ]
+    },
+    "country_year_spikes": [],
+    "resolution": "All IQR-flagged observations are legitimate catalogue entries (long films, multi-season series, vintage titles). Nothing was removed."
+  },
+  "segments": {
+    "countries": {
+      "us_count": 2883,
+      "us_share": 0.39607088885835967,
+      "top5_share": 0.6748179695013051,
+      "india_count": 956,
+      "longest_country": "India",
+      "longest_mean": 126.9,
+      "shortest_country": "Canada",
+      "shortest_mean": 86.7,
+      "global_movie_mean": 99.3,
+      "segments_with_30plus": 23,
+      "unspecified_count": 0
+    }
+  },
+  "segments_genre": {
+    "genres": {
+      "total_genre_tokens": 17068,
+      "distinct_genres": 42,
+      "top10_share": 0.6537379892195923,
+      "top1": "International Movies",
+      "top1_count": 2436,
+      "top5": [
+        [
+          "International Movies",
+          2436
+        ],
+        [
+          "Dramas",
+          2105
+        ],
+        [
+          "Comedies",
+          1471
+        ],
+        [
+          "International TV Shows",
+          1199
+        ],
+        [
+          "Documentaries",
+          786
+        ]
+      ],
+      "top_tv_genre": "International TV Shows",
+      "top_movie_genre": "International Movies"
+    },
+    "audience": {
+      "overall_pct": {
+        "Mature (TV-MA / R / TV-14)": 71.3,
+        "Teen (PG-13)": 15.39,
+        "Family / Kids": 13.31
+      },
+      "mature_count": 5544,
+      "family_count": 1035,
+      "latest_year_mature_share": 61.54,
+      "mature_share_2015": 59.09
+    }
+  },
+  "kpis": {
+    "catalogue_size": 7786,
+    "movie_count": 5376,
+    "tv_count": 2410,
+    "movie_share": 69.05,
+    "newest_addition": "2021-01-16",
+    "oldest_addition": "2008-01-01",
+    "avg_titles_added_per_year_2015_2020": 1267.0,
+    "peak_year": 2019,
+    "peak_year_additions": 2152,
+    "cagr_2015_2020_pct": 86.9,
+    "yoy_growth_pct": {
+      "2015": {
+        "added": 88,
+        "growth_pct": 252.0
+      },
+      "2016": {
+        "added": 443,
+        "growth_pct": 403.4
+      },
+      "2017": {
+        "added": 1225,
+        "growth_pct": 176.5
+      },
+      "2018": {
+        "added": 1685,
+        "growth_pct": 37.6
+      },
+      "2019": {
+        "added": 2152,
+        "growth_pct": 27.7
+      },
+      "2020": {
+        "added": 2009,
+        "growth_pct": -6.6
+      }
+    },
+    "avg_movie_runtime": 99.3,
+    "median_movie_runtime": 98.0,
+    "avg_tv_seasons": 1.78,
+    "single_season_tv_share": 66.72,
+    "avg_years_to_netflix": 4.56,
+    "median_years_to_netflix": 1.0,
+    "fresh_content_share": 55.58,
+    "top_country": "United States",
+    "top_country_share": 32.83,
+    "top_rating": "TV-MA",
+    "top_rating_share": 36.76,
+    "top_genre": "International Movies",
+    "top_genre_share_of_tokens": 14.27,
+    "avg_genres_per_title": 2.19,
+    "director_missing_share": 30.68,
+    "date_completeness": 99.87,
+    "friday_launch_share": 29.4,
+    "titles_per_year_mean": 555.4,
+    "description_quality": {
+      "avg_words": 23.8,
+      "min_words": 10,
+      "max_words": 48,
+      "duplicate_descriptions": 17
+    }
+  },
+  "insights": [
+    {
+      "title": "Catalogue growth peaked in 2019 and has slowed since",
+      "finding": "Annual additions ramped up from 2 titles in 2008 to a peak of 2,152 titles in 2019, a 1076.0x increase. Additions then fell 6.6% to 2,009 in 2020.",
+      "evidence": "2019 = 2,152 titles; 2020 = 2,009 (-6.6%); 2017 year-over-year growth was 176.5%. The 2015-2020 compound annual growth rate of additions is 86.9%.",
+      "why": "The platform moved through a rapid library-expansion phase and then slowed the pace of additions. Any forward-looking view of catalogue size should model a plateau rather than continued exponential growth.",
+      "visualization": "visualizations/trend_charts/fig_04_additions_over_time.png"
+    },
+    {
+      "title": "Movies are the bulk of the catalogue, but TV shows are thin in depth",
+      "finding": "5,376 of 7,786 titles are Movies (69.05%) versus 2,410 TV Shows. Yet 66.7% of TV shows run for a single season, so the catalogue is wide in films and shallow in long-running series.",
+      "evidence": "Movie:TV ratio is 2.23:1. Median TV show length is 1 season while the median movie runs 98 minutes.",
+      "why": "Films deliver instant breadth with low viewing commitment, while the small share of multi-season shows limits binge-depth content. Portfolio decisions can therefore be framed as breadth (films) versus depth (returning series).",
+      "visualization": "visualizations/comparison_charts/fig_10_type_composition.png"
+    },
+    {
+      "title": "Movie runtime is stable and does not track release year",
+      "finding": "Movie runtime is tightly concentrated (mean 99.3 min, median 98 min, interquartile range roughly 86-114 min) and its correlation with release year is -0.205.",
+      "evidence": "Across 7 decades of well-populated data, decade means stay inside a 53-minute band, and the distribution is close to symmetric (skew 0.191).",
+      "why": "Audience expectations of a standard feature length have not shifted, so scheduling, runtime-based recommendations and slot planning can rely on a stable target window regardless of a film's era.",
+      "visualization": "visualizations/correlation_charts/fig_07_runtime_vs_release_year.png"
+    },
+    {
+      "title": "Releases follow a deliberate weekly rhythm: Friday dominates",
+      "finding": "2,286 titles (29.4% of all dated additions) were added on a Friday, making it the platform's primary publishing day. December is the busiest month with 833 titles.",
+      "evidence": "Mean additions per calendar day is only 5.14, yet the single busiest day (2020-01-01) carried 119 titles - a clear batch-release pattern.",
+      "why": "A Friday-first cadence concentrates attention and marketing spend into one weekly window. Competitor planning and any analysis of weekend viewing spikes must account for this deliberate scheduling.",
+      "visualization": "visualizations/trend_charts/fig_05_seasonality_weekday_month.png"
+    },
+    {
+      "title": "The library has shifted towards fresh, near-current content",
+      "finding": "The median title is added 1 year after its original release (mean 4.6 years), and 55.6% of dated titles were added within one year of release.",
+      "evidence": "70.0% of the catalogue was released in 2015 or later and the median release year is 2017, while the oldest title dates to 1925.",
+      "why": "A catalogue concentrated on recent material competes on newness rather than on a deep archive, which raises the importance of continuous licensing and original production.",
+      "visualization": "visualizations/trend_charts/fig_06_content_age_gap.png"
+    },
+    {
+      "title": "Content supply is highly concentrated in a handful of countries",
+      "finding": "39.6% of titles come from the United States and the top five countries supply 67.5% of the catalogue; India alone contributes 956 titles.",
+      "evidence": "679 distinct countries appear in the data. Among the 23 countries with at least 30 movies, India has the longest average runtime (126.9 min) against a global movie mean of 99.3 min, while Canada averages 86.7 min.",
+      "why": "Sourcing is geographically concentrated, which is both a supply-chain risk and an opportunity: strong producers that are currently under-represented are candidate markets for localised content investment.",
+      "visualization": "visualizations/comparison_charts/fig_13_country_segments.png"
+    },
+    {
+      "title": "Mature-rated content anchors the catalogue and its share is stable over time",
+      "finding": "TV-MA alone accounts for 36.76% of titles, and the mature audience segment represents 71.3% of the catalogue.",
+      "evidence": "70.1% of titles carry a mature rating versus 13.3% family/kids. The mature share stood at 59.09% in 2015 and 61.54% in the final year, so the mix is not shifting with catalogue growth.",
+      "why": "Advertising, compliance and parental-control features must be sized for an adult-majority library, while the family segment stays a meaningful but secondary audience.",
+      "visualization": "visualizations/comparison_charts/fig_09_rating_distribution.png"
+    },
+    {
+      "title": "Statistical outliers are legitimate long-tail content, not data errors",
+      "finding": "IQR screening flags 337 movies (4.3%), 236 TV shows (3.0%) and 745 pre-2005 titles.",
+      "evidence": "Flagged cases include feature films of up to 312 minutes and series of up to 16 seasons, with the oldest title dated 1925.",
+      "why": "These extremes serve genuine long-format and vintage audiences. They should be segmented and reported separately rather than trimmed, because deleting them would bias average runtime and hide the long tail.",
+      "visualization": "visualizations/distribution_charts/fig_02_duration_boxplot.png"
+    },
+    {
+      "title": "Numeric fields carry very little genuine correlation",
+      "finding": "Of 10 movie-level field pairs, 1 are strong (|r| >= 0.5) and 2 moderate; the remainder are weak.",
+      "evidence": "The strongest relationship is release year versus content age at upload (r = -0.99), which is a calendar artefact rather than a behavioural driver. Runtime versus release year is r = -0.205.",
+      "why": "Catalogue metadata alone cannot explain performance because the dataset contains no viewership, revenue or engagement measures. Correlation must not be read as causation here, and any predictive modelling needs additional behavioural data.",
+      "visualization": "visualizations/correlation_charts/fig_08_correlation_heatmap.png"
+    },
+    {
+      "title": "Metadata completeness differs by field and is reported honestly",
+      "finding": "Missing metadata is concentrated in credits: director is unspecified for 30.68% of titles and the placeholder country label covers 507 titles. Only date_added is genuinely empty (10 cells, 0.01% of the dataset).",
+      "evidence": "date_added completeness is 99.87%. A residual formatting issue was also found: 6 text cells still contain an invisible zero-width space that Task 1's whitespace rule (str.strip) cannot detect.",
+      "why": "Crew-level and country-level analysis will under-count because of unspecified credits, so those results are stated as shares of titles with known credits. The zero-width space residue is a minor but concrete improvement for Task 1's pipeline.",
+      "visualization": "visualizations/distribution_charts/fig_03_release_year_distribution.png"
+    }
+  ],
+  "conclusion": "The catalogue holds 7,786 titles, of which 69.05% are movies. Additions grew to a peak of 2,152 titles in 2019 and then slowed. Content is recent (median release year 2017) and concentrated in mature-rated, US-produced titles. Runtime is stable, correlations are weak, and all flagged outliers are legitimate catalogue entries.",
+  "charts": [
+    {
+      "group": "distribution_charts",
+      "file": "fig_01_duration_distribution.png",
+      "relative_path": "visualizations/distribution_charts/fig_01_duration_distribution.png",
+      "title": "Duration distribution: movie runtime vs TV seasons",
+      "insight": "Movie runtimes cluster around 90-100 minutes while most TV shows run for a single season."
+    },
+    {
+      "group": "distribution_charts",
+      "file": "fig_02_duration_boxplot.png",
+      "relative_path": "visualizations/distribution_charts/fig_02_duration_boxplot.png",
+      "title": "Box plots of duration by content unit",
+      "insight": "The upper tail of movie runtimes and multi-season series are outliers by IQR but are legitimate catalogue entries."
+    },
+    {
+      "group": "distribution_charts",
+      "file": "fig_03_release_year_distribution.png",
+      "relative_path": "visualizations/distribution_charts/fig_03_release_year_distribution.png",
+      "title": "Release-year distribution of the Netflix catalogue",
+      "insight": "The catalogue is dominated by recently released content; older titles are a thin historical tail."
+    },
+    {
+      "group": "comparison_charts",
+      "file": "fig_09_rating_distribution.png",
+      "relative_path": "visualizations/comparison_charts/fig_09_rating_distribution.png",
+      "title": "Content rating mix",
+      "insight": "Two mature-audience ratings (TV-MA and TV-14) account for the majority of the catalogue."
+    },
+    {
+      "group": "comparison_charts",
+      "file": "fig_10_type_composition.png",
+      "relative_path": "visualizations/comparison_charts/fig_10_type_composition.png",
+      "title": "Movie vs TV show composition and additions over time",
+      "insight": "Movies make up roughly two thirds of the catalogue; TV additions accelerated after 2015."
+    },
+    {
+      "group": "correlation_charts",
+      "file": "fig_07_runtime_vs_release_year.png",
+      "relative_path": "visualizations/correlation_charts/fig_07_runtime_vs_release_year.png",
+      "title": "Movie runtime vs release year (scatter)",
+      "insight": "Movie runtime is stable across release years; the correlation is close to zero."
+    },
+    {
+      "group": "comparison_charts",
+      "file": "fig_11_runtime_by_decade.png",
+      "relative_path": "visualizations/comparison_charts/fig_11_runtime_by_decade.png",
+      "title": "Movie runtime distribution by release decade",
+      "insight": "The median runtime barely moves across four decades, so era does not drive film length."
+    },
+    {
+      "group": "comparison_charts",
+      "file": "fig_12_rating_by_type.png",
+      "relative_path": "visualizations/comparison_charts/fig_12_rating_by_type.png",
+      "title": "Rating mix within movies vs TV shows",
+      "insight": "Movies lean on film ratings (R, PG-13) while TV shows are dominated by TV-MA and TV-14."
+    },
+    {
+      "group": "trend_charts",
+      "file": "fig_04_additions_over_time.png",
+      "relative_path": "visualizations/trend_charts/fig_04_additions_over_time.png",
+      "title": "Annual and monthly catalogue additions",
+      "insight": "Additions ramped up steadily from 2008, peaked in 2019 and declined in 2020-2021."
+    },
+    {
+      "group": "trend_charts",
+      "file": "fig_05_seasonality_weekday_month.png",
+      "relative_path": "visualizations/trend_charts/fig_05_seasonality_weekday_month.png",
+      "title": "Monthly and weekday seasonality of catalogue additions",
+      "insight": "Friday is by far the most common release day, and October-December carry the heaviest monthly loads."
+    },
+    {
+      "group": "trend_charts",
+      "file": "fig_06_content_age_gap.png",
+      "relative_path": "visualizations/trend_charts/fig_06_content_age_gap.png",
+      "title": "Content age at time of upload",
+      "insight": "Day-and-date additions dominate and median content age fell towards 0-1 years."
+    },
+    {
+      "group": "correlation_charts",
+      "file": "fig_08_correlation_heatmap.png",
+      "relative_path": "visualizations/correlation_charts/fig_08_correlation_heatmap.png",
+      "title": "Correlation heatmap (movies-only and mixed)",
+      "insight": "All pairwise correlations are weak; the strongest link is that titles added later tend to be newer releases."
+    },
+    {
+      "group": "comparison_charts",
+      "file": "fig_13_country_segments.png",
+      "relative_path": "visualizations/comparison_charts/fig_13_country_segments.png",
+      "title": "Country segmentation: volume and average movie runtime",
+      "insight": "The United States and India lead on volume, while Indian films run clearly longer than the global average."
+    },
+    {
+      "group": "comparison_charts",
+      "file": "fig_14_genre_segments.png",
+      "relative_path": "visualizations/comparison_charts/fig_14_genre_segments.png",
+      "title": "Genre segmentation by content type",
+      "insight": "Documentaries, Stand-Up Comedy and Dramas are the largest genre segments in the catalogue."
+    },
+    {
+      "group": "trend_charts",
+      "file": "fig_15_audience_mix_over_time.png",
+      "relative_path": "visualizations/trend_charts/fig_15_audience_mix_over_time.png",
+      "title": "Audience mix over time",
+      "insight": "Mature-rated content remained the largest share of annual additions throughout the growth phase."
+    }
+  ]
+}
